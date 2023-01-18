@@ -1,0 +1,19 @@
+class Solution {
+public:
+    // https://www.youtube.com/watch?v=-vZ7LjWSWzY
+    int minFlipsMonoIncr(string s) {
+        int zero = 0;
+        int one = 0;
+        int flip = 0;
+        for(char c: s)
+        {
+            if(c == '1')
+                one++;
+            else 
+                flip++;
+            
+            flip = min(one, flip);
+        }
+        return flip;
+    }
+};
