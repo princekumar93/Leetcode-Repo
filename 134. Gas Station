@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) 
+    {
+        int startindex = 0;
+        int i = 0;
+        int n = gas.size();
+        int m = cost.size();
+        int nsum =0;
+        int msum = 0;
+        
+        while(i < n)
+        {
+            nsum+=gas[i];
+            msum+=cost[i];
+            i++;
+        }
+        
+        if(nsum < msum) 
+            return -1;
+        
+        i = 0;
+        int fuel = 0;
+        while(i < n)
+        {
+            fuel+=gas[i]-cost[i];
+            if(fuel < 0)
+            {
+                startindex = i+1;
+                fuel = 0;
+            }
+            i++;
+        }
+        
+        return startindex;
+    }
+};
+
+/**
+0,1,2,3,4
+1,2,3,4,5 -> 15
+3,4,5,1,2 -> 15
+
+2,3,4 -> 9
+3,4,3 -> 10
+**/
