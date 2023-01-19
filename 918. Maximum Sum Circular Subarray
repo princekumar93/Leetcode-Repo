@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int totalsum = 0;
+        int maxsum = INT_MIN;
+        int minsum = INT_MAX;
+        int sum1 = 0;
+        int sum2 = 0;
+        for(int n: nums)
+        {
+            totalsum+=n;
+            sum1+=n;
+            sum2+=n;
+            maxsum = max(maxsum, sum1);
+            if(sum1< 0) sum1 = 0;
+            minsum = min(minsum, sum2);
+            if(sum2>0) sum2=0;
+        }
+        return totalsum == minsum ? maxsum:max(maxsum, totalsum - minsum);
+    }
+};
